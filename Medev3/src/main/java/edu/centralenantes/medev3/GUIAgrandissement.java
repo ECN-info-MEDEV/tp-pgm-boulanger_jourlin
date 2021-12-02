@@ -85,7 +85,7 @@ public class GUIAgrandissement extends JDialog{
             //Chargement de l'image
             path=choix.getSelectedFile().getAbsolutePath();
             imageLabel.setText(path);
-            //image=PGM.lecture(choix.getSelectedFile().getAbsolutePath());
+            imageNew=PGM.lecture(choix.getSelectedFile().getAbsolutePath());
         }
     }
     
@@ -94,14 +94,14 @@ public class GUIAgrandissement extends JDialog{
      */      
     private void Enregistrer(){
         String inputValue = JOptionPane.showInputDialog("Indiquer le nom du fichier");
-        //PGM.enregistrement(newImage,inputValue);
+        PGM.enregistrement(imageNew,inputValue);
     }
     
     /**
      * Méthode qui appliquer l'agrandissement sur l'image et remplacer imageNew (appui bouton)
      */     
     private void Agrandissement(){
-        //imageNew=PGM.agrandissement(imageOld,Integer.parseInt(seuilText.getText()));
+        imageNew=PGM.agrandissement(imageOld,Integer.parseInt(seuilText.getText()));
     }
 }
 
