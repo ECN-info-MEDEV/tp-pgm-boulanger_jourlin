@@ -68,6 +68,8 @@ public class PGM {
         int dim2= Integer.valueOf(sT.nextToken());
         PGM pgm = new PGM(dim1, dim2);
         
+        line = bf.readLine(); //On supprime "255" et on passe à la suivante, avec les pixels
+        
         //Construction du tableau avec les pixels
         Queue<Integer> q = new LinkedList<>();
         
@@ -101,6 +103,8 @@ public class PGM {
         bw.write("P2\n#\n");
         //Entrer la taille de l'image
         bw.write(pgm.getDimX() + " " + pgm.getDimY());
+        //Le plus sombre :
+        bw.write("255\n");
         //Entrer les lignes, en veillant à la contrainte de 70 caractères
         for(int i = 0; i<pgm.getDimX(); i++){
             int j=0;
