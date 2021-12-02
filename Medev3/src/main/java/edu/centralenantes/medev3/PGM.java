@@ -84,6 +84,38 @@ public class PGM {
     }
     
     /**
+     * Fonction qui calcul la différence des niveaux de gris de deux images
+     * @param image1 
+     * @param image2
+     * @return L'image différence
+     */
+    public static PGM difference(PGM image1, PGM image2) throws Exception{
+        
+        if( !(image1.getDimX()==image2.getDimX()) || !(image1.getDimY()==image2.getDimY()) ){
+            throw new Exception();
+        }
+        else
+        {
+            int[][] niveaux_gris_difference = new int[image1.getDimX()][image1.getDimY()];
+
+            for(int i = 0; i < image1.getDimX(); i++){
+                for(int j = 0; j < image1.getDimY(); j++){
+                    int diff = image1.getPixels()[i][j] - image2.getPixels()[i][j];
+                    if (diff < 0){
+                        diff = 0;
+                    }
+                    niveaux_gris_difference[i][j] = diff;
+                }
+            }
+
+            PGM image_diff = new PGM(image1.getDimX(), image1.getDimY());
+            image_diff.setPixels(niveaux_gris_difference);
+
+            return image_diff;
+        }
+    }
+    
+    /**
      * Fonction pour réduire la taile d'une image d'un facteur donné
      * @param image L'image à réduire
      * @param facteur Le facteur de réduction
