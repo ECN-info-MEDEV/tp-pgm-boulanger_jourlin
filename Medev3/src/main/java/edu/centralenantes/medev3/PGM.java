@@ -11,6 +11,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.NoSuchElementException;
 import java.util.Queue;
@@ -67,6 +68,27 @@ public class PGM {
         this.pixels = new int[dimX][dimY];
     }
     
+    public static PGM histogramme(PGM pgmOrigine){
+        int[] nbPixels = new int[255];
+        for(int i=0; i<pgmOrigine.getDimX();i++){
+            for (int j = 0; j < pgmOrigine.getDimY(); j++) {
+                nbPixels[pgmOrigine.getPixels()[i][j]]+=1;
+            }
+        }
+        int maxValue = Arrays.stream(nbPixels).max().getAsInt();
+        PGM pgmHisto = new PGM(255,maxValue);
+        for (int i = 0; i < 255; i++) {
+            for(int j = 0 ; j<=maxValue ; j++){
+                if(maxValue-j<nbPixels[i]){
+                    pgmHisto.getPixels()[i][j]=255;
+                }
+                else{
+                    pgmHisto.getPixels()[i][j]=0;
+                }
+            }
+        }
+        return pgmHisto;
+    }
 
     public PGM(PGM image){
         this.dimX = image.getDimX();
