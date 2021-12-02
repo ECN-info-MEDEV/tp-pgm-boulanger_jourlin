@@ -22,7 +22,7 @@ public class GUISeuillage extends JDialog{
     public GUISeuillage(GUIPgm pgm){
         super(pgm,"Seuillage d'une image",true);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        this.setSize(600,400);
+        this.setSize(600,200);
         this.setLocationRelativeTo(null);
         JPanel contentPane = (JPanel)this.getContentPane();
         contentPane.setLayout(new GridLayout(1,2));
@@ -64,7 +64,7 @@ public class GUISeuillage extends JDialog{
     private void ajoutImage(){
         JFileChooser choix = new JFileChooser("Choisir une image");
         FileFilter imagesFilter = new FileNameExtensionFilter("Images","pgm");
-        choix.addChoosableFileFilter(imagesFilter);
+        choix.setFileFilter(imagesFilter);
         int retour = choix.showOpenDialog(this);
 
         if(retour ==JFileChooser.APPROVE_OPTION){
