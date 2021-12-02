@@ -52,7 +52,7 @@ public class GUIPgm extends JFrame {
     
     //TODO
     private void Seuillage(){
-        
+        GUISeuillage GI = new GUISeuillage(this);
     }
     
     //TODO
