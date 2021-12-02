@@ -10,7 +10,8 @@ import javax.swing.*;
 import javax.swing.filechooser.*;
 
 /**
- *
+ * Classe GUISeuillage qui va afficher la fenêtre de dialogue permettant de choisir une image, un seuil et
+ * d'enregistrer le résultat du seuillage de l'image 
  * @author Boulanger
  */
 public class GUISeuillage extends JDialog{
@@ -19,6 +20,11 @@ public class GUISeuillage extends JDialog{
     private String path;
     private JTextField seuilText;
     private JLabel imageLabel;
+    
+    /**
+     * Constructeur de GUISeuillage qui affiche le JDialog et initialise toutes les fonctionnalités
+     * @param pgm 
+     */
     public GUISeuillage(GUIPgm pgm){
         super(pgm,"Seuillage d'une image",true);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -61,6 +67,9 @@ public class GUISeuillage extends JDialog{
         this.setVisible(true);
     }
     
+    /**
+     * Méthode permettant d'ajouter une image à l'utilisateur et de la stockée dans oldImage (appui bouton)
+     */
     private void ajoutImage(){
         JFileChooser choix = new JFileChooser("Choisir une image");
         FileFilter imagesFilter = new FileNameExtensionFilter("Images","pgm");
@@ -75,12 +84,17 @@ public class GUISeuillage extends JDialog{
         }
     }
     
+    /**
+     * Méthode permettant à l'utilisateur de sauvegarder l'image résultante sous un nom qu'il choisi (appui bouton)
+     */
     private void Enregistrer(){
         String inputValue = JOptionPane.showInputDialog("Indiquer le nom du fichier");
         //PGM.enregistrement(newImage,inputValue);
     }
     
-    
+    /**
+     * Méthode qui appliquer le seuillage sur l'image et remplacer imageNew (appui bouton)
+     */
     private void Seuillage(){
         //imageNew=PGM.seuillage(imageOld,Integer.parseInt(seuilText.getText()));
     }

@@ -10,12 +10,19 @@ import javax.swing.*;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 
 /**
- *
+ *Classe GUIPgm, permettant d'afficher l'application qui modifie des images au format PGM
+ * On peut appliquer différentes modifications (sauvegardable, sans modification du fichier)
+ * réduction
+ * différence
+ * agrandissement
+ * Seuillage
  * @author Boulanger
  */
 public class GUIPgm extends JFrame {
     private JPanel contentPanel;
-    
+    /**
+     * Constructeur deGUIPgm, qui va initialiser la frame et ajouter les différents boutons
+     */
     public GUIPgm(){
         super("Modification PGM");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -37,7 +44,7 @@ public class GUIPgm extends JFrame {
         differenceButton.addActionListener((e)->Difference());
         
         JButton agrandissementButton = new JButton("Agrandissement");
-        agrandissementButton.addActionListener((e)->Aggrandissement());
+        agrandissementButton.addActionListener((e)->Agrandissement());
         
         JButton reductionButton = new JButton("Reduction");
         reductionButton.addActionListener((e)->Reduction());
@@ -50,22 +57,34 @@ public class GUIPgm extends JFrame {
         
     }
     
-    //TODO
+    /**
+     * Méthode appelée lors de l'appuie sur le bouton Seuillage
+     * cette méthode va lancer un dialogue GUISeuillage afin d'appliquer un seuillage à un image
+     */
     private void Seuillage(){
         GUISeuillage GI = new GUISeuillage(this);
     }
     
-    //TODO
+   /**
+    * Méthode appelée lor de l'appuien sur le bouton Difference
+    * cette méthode va lancer un dialogue GUIDifference afin d'appliquer une différence sur deux images
+    */
     private void Difference(){
         GUIDifference GD = new GUIDifference(this);
     }
     
-    //TODO
-    private void Aggrandissement(){
+    /**
+     * Méthode appelée lors de l'appuie sur le bouton Aggrandissement
+     * cette méthode va lancer un dialogue GUIAgrandissement afin d'appliquer un agrandissement d'une image
+     */
+    private void Agrandissement(){
         GUIAgrandissement GA= new GUIAgrandissement(this);
     }
     
-    //TODO
+    /**
+     * Méthode appelée lors de l'appuie sur le bouton Réduction
+     * cette méthode va lancer un dialogue GUIReduction afin d'appliquer une réduction à une image
+     */
     private void Reduction(){
         GUIReduction GR = new GUIReduction(this);
     }
