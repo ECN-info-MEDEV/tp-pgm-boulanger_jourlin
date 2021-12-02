@@ -127,7 +127,7 @@ public class PGM {
         int[][] niveaux_gris_reduits = new int[tailleX][tailleY];
         
         for(int i = 0; i < tailleX; i++){
-            for(int j = 0; i < tailleY; j++){
+            for(int j = 0; j < tailleY; j++){
                 int moyenne = 0;
                 for(int k = 0; k < facteur; k++){
                     for(int l = 0; l < facteur; l++){
@@ -157,7 +157,7 @@ public class PGM {
         int[][] niveaux_gris_agrandis = new int[tailleX][tailleY];
         
         for(int i = 0; i < image.getDimX(); i++){
-            for(int j = 0; i < image.getDimY(); j++){
+            for(int j = 0; j < image.getDimY(); j++){
                 for(int k = 0; k < facteur; k++){
                     for(int l = 0; l < facteur; l++){
                         niveaux_gris_agrandis[facteur * i + k][facteur * j + l] = image.getPixels()[i][j];
