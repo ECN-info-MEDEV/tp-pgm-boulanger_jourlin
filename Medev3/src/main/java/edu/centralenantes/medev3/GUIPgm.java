@@ -29,7 +29,7 @@ public class GUIPgm extends JFrame {
         this.setSize(900,600);
         this.setLocationRelativeTo(null);
         contentPanel=(JPanel)this.getContentPane();
-        contentPanel.setLayout(new GridLayout(2,2));
+        contentPanel.setLayout(new GridLayout(3,2));
         createButtons();
         this.setVisible(true);
     }
@@ -49,10 +49,14 @@ public class GUIPgm extends JFrame {
         JButton reductionButton = new JButton("Reduction");
         reductionButton.addActionListener((e)->Reduction());
         
+        JButton histoButton = new JButton("Histogramme");
+        histoButton.addActionListener((e)->Histogramme());
+        
         contentPanel.add(seuillageButton);
         contentPanel.add(differenceButton);
         contentPanel.add(agrandissementButton);
         contentPanel.add(reductionButton);
+        contentPanel.add(histoButton);
         
         
     }
@@ -89,6 +93,12 @@ public class GUIPgm extends JFrame {
         GUIReduction GR = new GUIReduction(this);
     }
     
+    /**
+     * Méthode appelée lors de 
+     */
+    private void Histogramme(){
+        GUIHistogramme GH = new GUIHistogramme(this);
+    }
     public static void main(String[] args) throws Exception{
         UIManager.setLookAndFeel(new NimbusLookAndFeel());
         GUIPgm gui= new GUIPgm();

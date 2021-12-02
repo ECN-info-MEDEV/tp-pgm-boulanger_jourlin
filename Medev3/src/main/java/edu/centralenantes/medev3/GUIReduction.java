@@ -23,8 +23,8 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  * @author Boulanger
  */
 public class GUIReduction extends JDialog {
-        //private PGM imageOld;
-    //private PGM imageNew;
+    private PGM imageOld;
+    private PGM imageNew;
     private String path;
     private JTextField seuilText;
     private JLabel imageLabel;

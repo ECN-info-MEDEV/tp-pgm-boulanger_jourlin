@@ -15,8 +15,8 @@ import javax.swing.filechooser.*;
  * @author Boulanger
  */
 public class GUISeuillage extends JDialog{
-    //private PGM imageOld;
-    //private PGM imageNew;
+    private PGM imageOld;
+    private PGM imageNew;
     private String path;
     private JTextField seuilText;
     private JLabel imageLabel;
