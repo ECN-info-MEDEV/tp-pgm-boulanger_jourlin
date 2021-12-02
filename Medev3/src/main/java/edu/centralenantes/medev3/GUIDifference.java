@@ -18,7 +18,7 @@ import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
- *
+ * Classe GUIDifference qui lance un JDialog permettant de choisir deux images dont on peut calcul la différence
  * @author Boulanger
  */
 public class GUIDifference extends JDialog {
@@ -29,7 +29,10 @@ public class GUIDifference extends JDialog {
     private JTextField agrandText;
     private JLabel imageLabel;
     private JLabel imageLabel2;
-    
+    /**
+     * Constructeur de GUIDifference
+     * @param gui 
+     */
     public GUIDifference(GUIPgm gui){
         super(gui,"Différence d'images",true);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -64,7 +67,7 @@ public class GUIDifference extends JDialog {
         enregistrerButton.addActionListener((e)->Enregistrer());
         
         JButton appliquerDifference = new JButton("Lancer la difference");
-        appliquerDifference.addActionListener((e)->Agrandissement());
+        appliquerDifference.addActionListener((e)->Difference());
         
         JPanel paneButton = new JPanel();
         paneButton.add(imageButton);
@@ -76,7 +79,9 @@ public class GUIDifference extends JDialog {
         contentPane.add(paneButton);
         this.setVisible(true);
     }
-    
+    /**
+     * Méthode permettant d'ajouter une image à l'utilisateur et de la stockée dans oldImage (appui bouton)
+     */    
     private void ajoutImage(){
         JFileChooser choix = new JFileChooser("Choisir une image");
         FileFilter imagesFilter = new FileNameExtensionFilter("Images","pgm");
@@ -91,7 +96,9 @@ public class GUIDifference extends JDialog {
         }
     }
     
-    
+    /**
+     * Méthode permettant d'ajouter une image à l'utilisateur et de la stockée dans oldImage2 (appui bouton)
+     */    
     private void ajoutImage2(){
         JFileChooser choix = new JFileChooser("Choisir une image");
         FileFilter imagesFilter = new FileNameExtensionFilter("Images","pgm");
@@ -105,13 +112,19 @@ public class GUIDifference extends JDialog {
             //imageOld2=PGM.lecture(choix.getSelectedFile().getAbsolutePath());
         }
     }
+    /**
+     * Méthode permettant à l'utilisateur de sauvegarder l'image résultante sous un nom qu'il choisi (appui bouton)
+     */  
     private void Enregistrer(){
         String inputValue = JOptionPane.showInputDialog("Indiquer le nom du fichier");
         //PGM.enregistrement(newImage,inputValue);
     }
     
     
-    private void Agrandissement(){
-        //imageNew=PGM.agrandissement(imageOld,Integer.parseInt(seuilText.getText()));
+    /**
+     * Méthode qui calcul la difference entre deux images et la stock dans newImage
+     */
+    private void Difference(){
+        //imageNew=PGM.difference(imageOld,imageOld2)));
     }
 }

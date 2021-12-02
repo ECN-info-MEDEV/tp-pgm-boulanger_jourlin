@@ -18,7 +18,8 @@ import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
- *
+  * Classe GUIReduction qui va afficher la fenêtre de dialogue permettant de choisir une image, un facteur de reduction et
+ * d'enregistrer le résultat du seuillage de l'image 
  * @author Boulanger
  */
 public class GUIReduction extends JDialog {
@@ -28,6 +29,10 @@ public class GUIReduction extends JDialog {
     private JTextField seuilText;
     private JLabel imageLabel;
     
+    /**
+     * Constructeur de GUISeuillage qui affiche le JDialog et initialise toutes les fonctionnalités
+     * @param pgm 
+     */
     public GUIReduction(GUIPgm pgm){
         super(pgm,"Réduction d'une image",true);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -69,7 +74,9 @@ public class GUIReduction extends JDialog {
         contentPane.add(paneButton);
         this.setVisible(true);
     }
-    
+     /**
+     * Méthode permettant d'ajouter une image à l'utilisateur et de la stockée dans oldImage (appui bouton)
+     */   
     private void ajoutImage(){
         JFileChooser choix = new JFileChooser("Choisir une image");
         FileFilter imagesFilter = new FileNameExtensionFilter("Images","pgm");
@@ -83,13 +90,17 @@ public class GUIReduction extends JDialog {
             //image=PGM.lecture(choix.getSelectedFile().getAbsolutePath());
         }
     }
-    
+    /**
+     * Méthode permettant à l'utilisateur de sauvegarder l'image résultante sous un nom qu'il choisi (appui bouton)
+     */    
     private void Enregistrer(){
         String inputValue = JOptionPane.showInputDialog("Indiquer le nom du fichier");
         //PGM.enregistrement(newImage,inputValue);
     }
     
-    
+    /**
+     * Méthode qui appliquer la réduction sur l'image et remplacer imageNew (appui bouton)
+     */    
     private void Reduction(){
         //imageNew=PGM.reduction(imageOld,Integer.parseInt(seuilText.getText()));
     }

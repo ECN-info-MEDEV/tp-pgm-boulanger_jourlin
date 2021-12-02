@@ -18,7 +18,7 @@ import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
- *
+ * CLasse GUIAgrandissement permettant de mettre un facteur de grandissement et de l'appliquer à une image puis de la sauvegarder
  * @author Boulanger
  */
 public class GUIAgrandissement extends JDialog{
@@ -27,7 +27,10 @@ public class GUIAgrandissement extends JDialog{
     private String path;
     private JTextField agrandText;
     private JLabel imageLabel;
-    
+    /**
+     * Constructeur de GUIAgrandissement
+     * @param gui 
+     */
     public GUIAgrandissement(GUIPgm gui){
         super(gui,"Agrandissement d'une image",true);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -69,7 +72,9 @@ public class GUIAgrandissement extends JDialog{
         contentPane.add(paneButton);
         this.setVisible(true);
     }
-    
+     /**
+     * Méthode permettant d'ajouter une image à l'utilisateur et de la stockée dans oldImage (appui bouton)
+     */   
     private void ajoutImage(){
         JFileChooser choix = new JFileChooser("Choisir une image");
         FileFilter imagesFilter = new FileNameExtensionFilter("Images","pgm");
@@ -84,12 +89,17 @@ public class GUIAgrandissement extends JDialog{
         }
     }
     
+    /**
+     * Méthode permettant à l'utilisateur de sauvegarder l'image résultante sous un nom qu'il choisi (appui bouton)
+     */      
     private void Enregistrer(){
         String inputValue = JOptionPane.showInputDialog("Indiquer le nom du fichier");
         //PGM.enregistrement(newImage,inputValue);
     }
     
-    
+    /**
+     * Méthode qui appliquer l'agrandissement sur l'image et remplacer imageNew (appui bouton)
+     */     
     private void Agrandissement(){
         //imageNew=PGM.agrandissement(imageOld,Integer.parseInt(seuilText.getText()));
     }
