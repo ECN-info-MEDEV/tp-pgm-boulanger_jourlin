@@ -21,15 +21,17 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  *
  * @author Boulanger
  */
-public class GUIReduction extends JDialog {
-        //private PGM imageOld;
+public class GUIDifference extends JDialog {
+    //private PGM imageOld;
     //private PGM imageNew;
-    private String path;
-    private JTextField seuilText;
+    //private PGM imageOld2;
+    private String path,path2;
+    private JTextField agrandText;
     private JLabel imageLabel;
+    private JLabel imageLabel2;
     
-    public GUIReduction(GUIPgm pgm){
-        super(pgm,"Réduction d'une image",true);
+    public GUIDifference(GUIPgm gui){
+        super(gui,"Différence d'images",true);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setSize(600,200);
         this.setLocationRelativeTo(null);
@@ -38,32 +40,37 @@ public class GUIReduction extends JDialog {
         
         //  GESTION DU SEUIL    \\
         JPanel paneSeuil= new JPanel();
-        JLabel seuilLabel = new JLabel("Définir le coeff de réduction");
-        seuilText = new JTextField("insérer un entier ici");
         
-        JLabel txtImageLabel=new JLabel("L'image choisie est au chemin d'accès suivant :");
+        JLabel txtImageLabel=new JLabel("L'image N° 1 est au chemin d'accès suivant :");
         imageLabel = new JLabel(path);
         
-       
+       JLabel txtImageLabel2 = new JLabel("L'image n° 2 est au chemin d'accèsn suivant :");
+       imageLabel2=new JLabel(path2);
     
-        paneSeuil.add(seuilLabel);
-        paneSeuil.add(seuilText);
         paneSeuil.add(txtImageLabel);
-        paneSeuil.add(imageLabel);    
+        paneSeuil.add(imageLabel);
+        
+        paneSeuil.add(txtImageLabel2);
+        paneSeuil.add(imageLabel2);
         // GESTION DU CHARGEMENT DE L IMAGE \\
         
-        JButton imageButton = new JButton("Selection de l'image");
+        JButton imageButton = new JButton("Selection de l'image n°1");
         imageButton.addActionListener((e)->ajoutImage());
+        
+        JButton imageButton2 = new JButton("Selection de l'image n°2");
+        imageButton2.addActionListener((e)->ajoutImage2());
         
         JButton enregistrerButton = new JButton("Enregistrer");
         enregistrerButton.addActionListener((e)->Enregistrer());
         
-        JButton appliquerReduction = new JButton("Lancer la réduction");
-        appliquerReduction.addActionListener((e)->Reduction());
+        JButton appliquerDifference = new JButton("Lancer la difference");
+        appliquerDifference.addActionListener((e)->Agrandissement());
+        
         JPanel paneButton = new JPanel();
         paneButton.add(imageButton);
         paneButton.add(enregistrerButton);
-        paneButton.add(appliquerReduction);
+        paneButton.add(imageButton2);
+        paneButton.add(appliquerDifference);
         
         contentPane.add(paneSeuil);
         contentPane.add(paneButton);
@@ -80,17 +87,31 @@ public class GUIReduction extends JDialog {
             //Chargement de l'image
             path=choix.getSelectedFile().getAbsolutePath();
             imageLabel.setText(path);
-            //image=PGM.lecture(choix.getSelectedFile().getAbsolutePath());
+            //imageOld=PGM.lecture(choix.getSelectedFile().getAbsolutePath());
         }
     }
     
+    
+    private void ajoutImage2(){
+        JFileChooser choix = new JFileChooser("Choisir une image");
+        FileFilter imagesFilter = new FileNameExtensionFilter("Images","pgm");
+        choix.setFileFilter(imagesFilter);
+        int retour = choix.showOpenDialog(this);
+
+        if(retour ==JFileChooser.APPROVE_OPTION){
+            //Chargement de l'image
+            path2=choix.getSelectedFile().getAbsolutePath();
+            imageLabel2.setText(path2);
+            //imageOld2=PGM.lecture(choix.getSelectedFile().getAbsolutePath());
+        }
+    }
     private void Enregistrer(){
         String inputValue = JOptionPane.showInputDialog("Indiquer le nom du fichier");
         //PGM.enregistrement(newImage,inputValue);
     }
     
     
-    private void Reduction(){
-        //imageNew=PGM.reduction(imageOld,Integer.parseInt(seuilText.getText()));
+    private void Agrandissement(){
+        //imageNew=PGM.agrandissement(imageOld,Integer.parseInt(seuilText.getText()));
     }
 }

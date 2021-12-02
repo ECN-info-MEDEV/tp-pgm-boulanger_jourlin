@@ -21,15 +21,15 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  *
  * @author Boulanger
  */
-public class GUIReduction extends JDialog {
-        //private PGM imageOld;
+public class GUIAgrandissement extends JDialog{
+    //private PGM imageOld;
     //private PGM imageNew;
     private String path;
-    private JTextField seuilText;
+    private JTextField agrandText;
     private JLabel imageLabel;
     
-    public GUIReduction(GUIPgm pgm){
-        super(pgm,"Réduction d'une image",true);
+    public GUIAgrandissement(GUIPgm gui){
+        super(gui,"Agrandissement d'une image",true);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setSize(600,200);
         this.setLocationRelativeTo(null);
@@ -38,8 +38,8 @@ public class GUIReduction extends JDialog {
         
         //  GESTION DU SEUIL    \\
         JPanel paneSeuil= new JPanel();
-        JLabel seuilLabel = new JLabel("Définir le coeff de réduction");
-        seuilText = new JTextField("insérer un entier ici");
+        JLabel seuilLabel = new JLabel("Définir le facteur d'agrandissement");
+        agrandText = new JTextField("insérer un nombre ici");
         
         JLabel txtImageLabel=new JLabel("L'image choisie est au chemin d'accès suivant :");
         imageLabel = new JLabel(path);
@@ -47,7 +47,7 @@ public class GUIReduction extends JDialog {
        
     
         paneSeuil.add(seuilLabel);
-        paneSeuil.add(seuilText);
+        paneSeuil.add(agrandText);
         paneSeuil.add(txtImageLabel);
         paneSeuil.add(imageLabel);    
         // GESTION DU CHARGEMENT DE L IMAGE \\
@@ -58,12 +58,12 @@ public class GUIReduction extends JDialog {
         JButton enregistrerButton = new JButton("Enregistrer");
         enregistrerButton.addActionListener((e)->Enregistrer());
         
-        JButton appliquerReduction = new JButton("Lancer la réduction");
-        appliquerReduction.addActionListener((e)->Reduction());
+        JButton appliquerAgrandissement = new JButton("Lancer l'agrandissement");
+        appliquerAgrandissement.addActionListener((e)->Agrandissement());
         JPanel paneButton = new JPanel();
         paneButton.add(imageButton);
         paneButton.add(enregistrerButton);
-        paneButton.add(appliquerReduction);
+        paneButton.add(appliquerAgrandissement);
         
         contentPane.add(paneSeuil);
         contentPane.add(paneButton);
@@ -90,7 +90,8 @@ public class GUIReduction extends JDialog {
     }
     
     
-    private void Reduction(){
-        //imageNew=PGM.reduction(imageOld,Integer.parseInt(seuilText.getText()));
+    private void Agrandissement(){
+        //imageNew=PGM.agrandissement(imageOld,Integer.parseInt(seuilText.getText()));
     }
 }
+

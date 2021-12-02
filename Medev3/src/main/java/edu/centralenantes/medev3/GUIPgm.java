@@ -57,17 +57,17 @@ public class GUIPgm extends JFrame {
     
     //TODO
     private void Difference(){
-        
+        GUIDifference GD = new GUIDifference(this);
     }
     
     //TODO
     private void Aggrandissement(){
-        
+        GUIAgrandissement GA= new GUIAgrandissement(this);
     }
     
     //TODO
     private void Reduction(){
-        
+        GUIReduction GR = new GUIReduction(this);
     }
     
     public static void main(String[] args) throws Exception{
