@@ -6,33 +6,26 @@
 package edu.centralenantes.medev3;
 
 import java.awt.GridLayout;
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JFileChooser;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
- * CLasse GUIAgrandissement permettant de mettre un facteur de grandissement et de l'appliquer à une image puis de la sauvegarder
+ *
  * @author Boulanger
  */
-public class GUIAgrandissement extends JDialog{
+public class GUIHistogramme extends JDialog {
     private PGM imageOld;
     private PGM imageNew;
     private String path;
-    private JTextField agrandText;
     private JLabel imageLabel;
+    
     /**
-     * Constructeur de GUIAgrandissement
-     * @param gui 
+     * Constructeur de GUISeuillage qui affiche le JDialog et initialise toutes les fonctionnalités
+     * @param pgm 
      */
-    public GUIAgrandissement(GUIPgm gui){
-        super(gui,"Agrandissement d'une image",true);
+    public GUIHistogramme(GUIPgm pgm){
+        super(pgm,"Histogramme d'une image",true);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setSize(600,200);
         this.setLocationRelativeTo(null);
@@ -41,16 +34,9 @@ public class GUIAgrandissement extends JDialog{
         
         //  GESTION DU SEUIL    \\
         JPanel paneSeuil= new JPanel();
-        JLabel seuilLabel = new JLabel("Définir le facteur d'agrandissement");
-        agrandText = new JTextField("insérer un nombre ici");
-        
         JLabel txtImageLabel=new JLabel("L'image choisie est au chemin d'accès suivant :");
         imageLabel = new JLabel(path);
         
-       
-    
-        paneSeuil.add(seuilLabel);
-        paneSeuil.add(agrandText);
         paneSeuil.add(txtImageLabel);
         paneSeuil.add(imageLabel);    
         // GESTION DU CHARGEMENT DE L IMAGE \\
@@ -61,20 +47,21 @@ public class GUIAgrandissement extends JDialog{
         JButton enregistrerButton = new JButton("Enregistrer");
         enregistrerButton.addActionListener((e)->Enregistrer());
         
-        JButton appliquerAgrandissement = new JButton("Lancer l'agrandissement");
-        appliquerAgrandissement.addActionListener((e)->Agrandissement());
+        JButton appliquerHistogramme = new JButton("Lancer l'histogramme");
+        appliquerHistogramme.addActionListener((e)->Histogramme());
         JPanel paneButton = new JPanel();
         paneButton.add(imageButton);
         paneButton.add(enregistrerButton);
-        paneButton.add(appliquerAgrandissement);
+        paneButton.add(appliquerHistogramme);
         
         contentPane.add(paneSeuil);
         contentPane.add(paneButton);
         this.setVisible(true);
     }
-     /**
+    
+    /**
      * Méthode permettant d'ajouter une image à l'utilisateur et de la stockée dans oldImage (appui bouton)
-     */   
+     */
     private void ajoutImage(){
         JFileChooser choix = new JFileChooser("Choisir une image");
         FileFilter imagesFilter = new FileNameExtensionFilter("Images","pgm");
@@ -91,17 +78,16 @@ public class GUIAgrandissement extends JDialog{
     
     /**
      * Méthode permettant à l'utilisateur de sauvegarder l'image résultante sous un nom qu'il choisi (appui bouton)
-     */      
+     */
     private void Enregistrer(){
         String inputValue = JOptionPane.showInputDialog("Indiquer le nom du fichier");
         //PGM.enregistrement(newImage,inputValue);
     }
     
     /**
-     * Méthode qui appliquer l'agrandissement sur l'image et remplacer imageNew (appui bouton)
-     */     
-    private void Agrandissement(){
-        //imageNew=PGM.agrandissement(imageOld,Integer.parseInt(seuilText.getText()));
+     * Méthode qui appliquer le seuillage sur l'image et remplacer imageNew (appui bouton)
+     */
+    private void Histogramme(){
+        //imageNew=PGM.seuillage(imageOld,Integer.parseInt(seuilText.getText()));
     }
 }
-
