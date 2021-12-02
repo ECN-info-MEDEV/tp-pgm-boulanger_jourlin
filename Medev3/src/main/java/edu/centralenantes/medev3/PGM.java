@@ -6,14 +6,25 @@
 package edu.centralenantes.medev3;
 
 /**
- *
+ * Classe gérant les fichiers PGM
  * @author asjou
  */
 public class PGM {
-    public int[][] pixels;
-    public int dimX;
-    public int dimY;
+    
+    /**
+     * Le tableau des niveaux de gris de chaque pixel de l'image
+     */
+    private int[][] pixels;
+    /**
+     * La dimension en X de l'image
+     */
+    private int dimX;
+    /**
+     * La dimension en Y de l'image
+     */
+    private int dimY;
 
+    
     public int[][] getPixels() {
         return pixels;
     }
