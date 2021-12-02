@@ -6,8 +6,10 @@
 package edu.centralenantes.medev3;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.NoSuchElementException;
@@ -53,7 +55,7 @@ public class PGM {
         this.pixels = new int[dimX][dimY];
     }
     
-    public PGM lecture(String path) throws FileNotFoundException, IOException{
+    public static PGM lecture(String path) throws FileNotFoundException, IOException{
         FileReader fr = new FileReader(path);
         BufferedReader bf = new BufferedReader(fr);
         
@@ -91,5 +93,32 @@ public class PGM {
             }
         }
         return pgm;
+    }
+    
+    public static void enregistrement(PGM pgm, String nomFichier) throws IOException{
+        BufferedWriter bw = new BufferedWriter(new FileWriter(nomFichier));
+        //Lignes indiquant le type de fichier
+        bw.write("P2\n#\n");
+        //Entrer la taille de l'image
+        bw.write(pgm.getDimX() + " " + pgm.getDimY());
+        //Entrer les lignes, en veillant à la contrainte de 70 caractères
+        for(int i = 0; i<pgm.getDimX(); i++){
+            int j=0;
+            int k=0; //Compteur pour contrainte 70 caractères (on a choisit de rentrer 12 valeurs par ligne au maximum
+            while(j<pgm.getDimY()){
+                if(k<12){
+                    bw.write(pgm.getPixels()[i][j]+" ");
+                    k++;
+                }
+                else{
+                    bw.write("\n"+pgm.getPixels()[i][j]+" ");
+                    k=1;
+                }
+            }
+            bw.write("\n");
+        }
+        
+        bw.flush();
+        bw.close();
     }
 }
