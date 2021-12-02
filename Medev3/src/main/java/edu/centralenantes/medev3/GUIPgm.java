@@ -94,7 +94,8 @@ public class GUIPgm extends JFrame {
     }
     
     /**
-     * Méthode appelée lors de 
+     * Méthode appelée lors de l'appuie sur le bouton Histogramme
+     * Cette méthode va lancer un dialogue GUIHistogramme afin de calculer l'histogramme d'une image
      */
     private void Histogramme(){
         GUIHistogramme GH = new GUIHistogramme(this);

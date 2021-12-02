@@ -80,7 +80,7 @@ public class GUISeuillage extends JDialog{
             //Chargement de l'image
             path=choix.getSelectedFile().getAbsolutePath();
             imageLabel.setText(path);
-            //image=PGM.lecture(choix.getSelectedFile().getAbsolutePath());
+            imageNew=PGM.lecture(choix.getSelectedFile().getAbsolutePath());
         }
     }
     
@@ -89,13 +89,13 @@ public class GUISeuillage extends JDialog{
      */
     private void Enregistrer(){
         String inputValue = JOptionPane.showInputDialog("Indiquer le nom du fichier");
-        //PGM.enregistrement(newImage,inputValue);
+        PGM.enregistrement(imageNew,inputValue);
     }
     
     /**
      * Méthode qui appliquer le seuillage sur l'image et remplacer imageNew (appui bouton)
      */
     private void Seuillage(){
-        //imageNew=PGM.seuillage(imageOld,Integer.parseInt(seuilText.getText()));
+        imageNew=PGM.seuillage(imageOld,Integer.parseInt(seuilText.getText()));
     }
 }

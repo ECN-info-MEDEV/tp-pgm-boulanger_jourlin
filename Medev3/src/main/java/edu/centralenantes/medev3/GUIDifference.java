@@ -92,7 +92,7 @@ public class GUIDifference extends JDialog {
             //Chargement de l'image
             path=choix.getSelectedFile().getAbsolutePath();
             imageLabel.setText(path);
-            //imageOld=PGM.lecture(choix.getSelectedFile().getAbsolutePath());
+            imageOld=PGM.lecture(choix.getSelectedFile().getAbsolutePath());
         }
     }
     
@@ -109,7 +109,7 @@ public class GUIDifference extends JDialog {
             //Chargement de l'image
             path2=choix.getSelectedFile().getAbsolutePath();
             imageLabel2.setText(path2);
-            //imageOld2=PGM.lecture(choix.getSelectedFile().getAbsolutePath());
+            imageOld2=PGM.lecture(choix.getSelectedFile().getAbsolutePath());
         }
     }
     /**
@@ -117,7 +117,7 @@ public class GUIDifference extends JDialog {
      */  
     private void Enregistrer(){
         String inputValue = JOptionPane.showInputDialog("Indiquer le nom du fichier");
-        //PGM.enregistrement(newImage,inputValue);
+        PGM.enregistrement(imageNew,inputValue);
     }
     
     
@@ -125,6 +125,6 @@ public class GUIDifference extends JDialog {
      * Méthode qui calcul la difference entre deux images et la stock dans newImage
      */
     private void Difference(){
-        //imageNew=PGM.difference(imageOld,imageOld2)));
+        imageNew=PGM.difference(imageOld,imageOld2)));
     }
 }
