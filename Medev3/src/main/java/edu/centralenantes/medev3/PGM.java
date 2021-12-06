@@ -68,6 +68,11 @@ public class PGM {
         this.pixels = new int[dimX][dimY];
     }
     
+    /**
+     * Méthode statique qui renvoie l'histogramme d'un fichier PGM placé en entrée
+     * @param pgmOrigine
+     * @return
+     */
     public static PGM histogramme(PGM pgmOrigine){
         int[] nbPixels = new int[255];
         for(int i=0; i<pgmOrigine.getDimX();i++){
@@ -101,6 +106,13 @@ public class PGM {
         }
     }
     
+    /**
+     * Méthode statique qui permet de lire un fichier PGM qui se trouve à l'emplacement indiqué en paramètre
+     * @param path
+     * @return
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
     public static PGM lecture(String path) throws FileNotFoundException, IOException{
         FileReader fr = new FileReader(path);
         BufferedReader bf = new BufferedReader(fr);
@@ -143,6 +155,12 @@ public class PGM {
         return pgm;
     }
     
+    /**
+     * Méthode statique qui enregistre l'élément de la classe PGM placé en entrée dans un fichier nommé suivant le String en entrée
+     * @param pgm
+     * @param nomFichier
+     * @throws IOException
+     */
     public static void enregistrement(PGM pgm, String nomFichier) throws IOException{
         BufferedWriter bw = new BufferedWriter(new FileWriter(nomFichier));
         //Lignes indiquant le type de fichier
@@ -206,6 +224,7 @@ public class PGM {
      * @param image1 
      * @param image2
      * @return L'image différence
+     * @throws java.lang.Exception
      */
     public static PGM difference(PGM image1, PGM image2) throws Exception{
         
