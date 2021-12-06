@@ -6,6 +6,9 @@
 package edu.centralenantes.medev3;
 
 import java.awt.GridLayout;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
@@ -58,16 +61,40 @@ public class GUIDifference extends JDialog {
         // GESTION DU CHARGEMENT DE L IMAGE \\
         
         JButton imageButton = new JButton("Selection de l'image n°1");
-        imageButton.addActionListener((e)->ajoutImage());
+        imageButton.addActionListener((e)->{
+            try {
+                ajoutImage();
+            } catch (IOException ex) {
+                Logger.getLogger(GUIDifference.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
         
         JButton imageButton2 = new JButton("Selection de l'image n°2");
-        imageButton2.addActionListener((e)->ajoutImage2());
+        imageButton2.addActionListener((e)->{
+            try {
+                ajoutImage2();
+            } catch (IOException ex) {
+                Logger.getLogger(GUIDifference.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
         
         JButton enregistrerButton = new JButton("Enregistrer");
-        enregistrerButton.addActionListener((e)->Enregistrer());
+        enregistrerButton.addActionListener((e)->{
+            try {
+                Enregistrer();
+            } catch (IOException ex) {
+                Logger.getLogger(GUIDifference.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
         
         JButton appliquerDifference = new JButton("Lancer la difference");
-        appliquerDifference.addActionListener((e)->Difference());
+        appliquerDifference.addActionListener((e)->{
+            try {
+                Difference();
+            } catch (Exception ex) {
+                Logger.getLogger(GUIDifference.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
         
         JPanel paneButton = new JPanel();
         paneButton.add(imageButton);
@@ -82,7 +109,7 @@ public class GUIDifference extends JDialog {
     /**
      * Méthode permettant d'ajouter une image à l'utilisateur et de la stockée dans oldImage (appui bouton)
      */    
-    private void ajoutImage(){
+    private void ajoutImage() throws IOException{
         JFileChooser choix = new JFileChooser("Choisir une image");
         FileFilter imagesFilter = new FileNameExtensionFilter("Images","pgm");
         choix.setFileFilter(imagesFilter);
@@ -99,7 +126,7 @@ public class GUIDifference extends JDialog {
     /**
      * Méthode permettant d'ajouter une image à l'utilisateur et de la stockée dans oldImage2 (appui bouton)
      */    
-    private void ajoutImage2(){
+    private void ajoutImage2() throws IOException{
         JFileChooser choix = new JFileChooser("Choisir une image");
         FileFilter imagesFilter = new FileNameExtensionFilter("Images","pgm");
         choix.setFileFilter(imagesFilter);
@@ -115,7 +142,7 @@ public class GUIDifference extends JDialog {
     /**
      * Méthode permettant à l'utilisateur de sauvegarder l'image résultante sous un nom qu'il choisi (appui bouton)
      */  
-    private void Enregistrer(){
+    private void Enregistrer() throws IOException{
         String inputValue = JOptionPane.showInputDialog("Indiquer le nom du fichier");
         PGM.enregistrement(imageNew,inputValue);
     }
@@ -124,7 +151,7 @@ public class GUIDifference extends JDialog {
     /**
      * Méthode qui calcul la difference entre deux images et la stock dans newImage
      */
-    private void Difference(){
-        imageNew=PGM.difference(imageOld,imageOld2)));
+    private void Difference() throws Exception{
+        imageNew=PGM.difference(imageOld,imageOld2);
     }
 }

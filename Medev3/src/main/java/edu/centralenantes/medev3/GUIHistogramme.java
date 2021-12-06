@@ -6,6 +6,8 @@
 package edu.centralenantes.medev3;
 
 import java.awt.GridLayout;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -24,7 +26,7 @@ public class GUIHistogramme extends JDialog {
      * Constructeur de GUISeuillage qui affiche le JDialog et initialise toutes les fonctionnalités
      * @param pgm 
      */
-    public GUIHistogramme(GUIPgm pgm){
+    public GUIHistogramme(GUIPgm pgm)throws Exception{
         super(pgm,"Histogramme d'une image",true);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setSize(600,200);
@@ -42,10 +44,22 @@ public class GUIHistogramme extends JDialog {
         // GESTION DU CHARGEMENT DE L IMAGE \\
         
         JButton imageButton = new JButton("Selection de l'image");
-        imageButton.addActionListener((e)->ajoutImage());
+        imageButton.addActionListener((e)->{
+            try {
+                ajoutImage();
+            } catch (Exception ex) {
+                Logger.getLogger(GUIHistogramme.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
         
         JButton enregistrerButton = new JButton("Enregistrer");
-        enregistrerButton.addActionListener((e)->Enregistrer());
+        enregistrerButton.addActionListener((e)->{
+            try {
+                Enregistrer();
+            } catch (Exception ex) {
+                Logger.getLogger(GUIHistogramme.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
         
         JButton appliquerHistogramme = new JButton("Lancer l'histogramme");
         appliquerHistogramme.addActionListener((e)->Histogramme());
@@ -62,7 +76,7 @@ public class GUIHistogramme extends JDialog {
     /**
      * Méthode permettant d'ajouter une image à l'utilisateur et de la stockée dans oldImage (appui bouton)
      */
-    private void ajoutImage(){
+    private void ajoutImage()throws Exception{
         JFileChooser choix = new JFileChooser("Choisir une image");
         FileFilter imagesFilter = new FileNameExtensionFilter("Images","pgm");
         choix.setFileFilter(imagesFilter);
@@ -72,16 +86,16 @@ public class GUIHistogramme extends JDialog {
             //Chargement de l'image
             path=choix.getSelectedFile().getAbsolutePath();
             imageLabel.setText(path);
-            imageNew=PGM.lecture(choix.getSelectedFile().getAbsolutePath());
+            imageOld=PGM.lecture(choix.getSelectedFile().getAbsolutePath());
         }
     }
     
     /**
      * Méthode permettant à l'utilisateur de sauvegarder l'image résultante sous un nom qu'il choisi (appui bouton)
      */
-    private void Enregistrer(){
+    private void Enregistrer()throws Exception{
         String inputValue = JOptionPane.showInputDialog("Indiquer le nom du fichier");
-        PGM.enregistrement(ImageNew,inputValue);
+        PGM.enregistrement(imageNew,inputValue+".pgm");
     }
     
     /**

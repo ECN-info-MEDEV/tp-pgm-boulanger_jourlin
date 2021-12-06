@@ -6,6 +6,8 @@
 package edu.centralenantes.medev3;
 
 import java.awt.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 
@@ -50,7 +52,13 @@ public class GUIPgm extends JFrame {
         reductionButton.addActionListener((e)->Reduction());
         
         JButton histoButton = new JButton("Histogramme");
-        histoButton.addActionListener((e)->Histogramme());
+        histoButton.addActionListener((e)->{
+            try {
+                Histogramme();
+            } catch (Exception ex) {
+                Logger.getLogger(GUIPgm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
         
         contentPanel.add(seuillageButton);
         contentPanel.add(differenceButton);
@@ -97,7 +105,7 @@ public class GUIPgm extends JFrame {
      * Méthode appelée lors de l'appuie sur le bouton Histogramme
      * Cette méthode va lancer un dialogue GUIHistogramme afin de calculer l'histogramme d'une image
      */
-    private void Histogramme(){
+    private void Histogramme() throws Exception{
         GUIHistogramme GH = new GUIHistogramme(this);
     }
     public static void main(String[] args) throws Exception{

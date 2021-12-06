@@ -6,6 +6,9 @@
 package edu.centralenantes.medev3;
 
 import java.awt.*;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.filechooser.*;
 
@@ -50,10 +53,22 @@ public class GUISeuillage extends JDialog{
         // GESTION DU CHARGEMENT DE L IMAGE \\
         
         JButton imageButton = new JButton("Selection de l'image");
-        imageButton.addActionListener((e)->ajoutImage());
+        imageButton.addActionListener((e)->{
+            try {
+                ajoutImage();
+            } catch (IOException ex) {
+                Logger.getLogger(GUISeuillage.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
         
         JButton enregistrerButton = new JButton("Enregistrer");
-        enregistrerButton.addActionListener((e)->Enregistrer());
+        enregistrerButton.addActionListener((e)->{
+            try {
+                Enregistrer();
+            } catch (IOException ex) {
+                Logger.getLogger(GUISeuillage.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
         
         JButton appliquerSeuillage = new JButton("Lancer le seuillage");
         appliquerSeuillage.addActionListener((e)->Seuillage());
@@ -70,7 +85,7 @@ public class GUISeuillage extends JDialog{
     /**
      * Méthode permettant d'ajouter une image à l'utilisateur et de la stockée dans oldImage (appui bouton)
      */
-    private void ajoutImage(){
+    private void ajoutImage() throws IOException{
         JFileChooser choix = new JFileChooser("Choisir une image");
         FileFilter imagesFilter = new FileNameExtensionFilter("Images","pgm");
         choix.setFileFilter(imagesFilter);
@@ -80,14 +95,14 @@ public class GUISeuillage extends JDialog{
             //Chargement de l'image
             path=choix.getSelectedFile().getAbsolutePath();
             imageLabel.setText(path);
-            imageNew=PGM.lecture(choix.getSelectedFile().getAbsolutePath());
+            imageOld=PGM.lecture(choix.getSelectedFile().getAbsolutePath());
         }
     }
     
     /**
      * Méthode permettant à l'utilisateur de sauvegarder l'image résultante sous un nom qu'il choisi (appui bouton)
      */
-    private void Enregistrer(){
+    private void Enregistrer() throws IOException{
         String inputValue = JOptionPane.showInputDialog("Indiquer le nom du fichier");
         PGM.enregistrement(imageNew,inputValue);
     }
