@@ -75,7 +75,7 @@ public class GUIAgrandissement extends JDialog{
                 Logger.getLogger(GUIAgrandissement.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
-        
+
         JButton appliquerAgrandissement = new JButton("Lancer l'agrandissement");
         appliquerAgrandissement.addActionListener((e)->Agrandissement());
         JPanel paneButton = new JPanel();
@@ -108,6 +108,7 @@ public class GUIAgrandissement extends JDialog{
      * Méthode permettant à l'utilisateur de sauvegarder l'image résultante sous un nom qu'il choisi (appui bouton)
      */      
     private void Enregistrer() throws IOException{
+
         String inputValue = JOptionPane.showInputDialog("Indiquer le nom du fichier");
         PGM.enregistrement(imageNew,inputValue);
     }

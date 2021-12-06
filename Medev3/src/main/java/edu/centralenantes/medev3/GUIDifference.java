@@ -95,6 +95,7 @@ public class GUIDifference extends JDialog {
                 Logger.getLogger(GUIDifference.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
+
         
         JPanel paneButton = new JPanel();
         paneButton.add(imageButton);
