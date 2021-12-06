@@ -82,13 +82,13 @@ public class PGM {
         }
         int maxValue = Arrays.stream(nbPixels).max().getAsInt();
         PGM pgmHisto = new PGM(maxValue,256);
-        for (int i = 0; i < 256; i++) {
-            for(int j = 0 ; j<maxValue ; j++){
-                if(j<=nbPixels[i]){
-                    pgmHisto.getPixels()[j][i]=255;
+        for (int i = 0; i < maxValue; i++) {
+            for(int j = 0 ; j<256 ; j++){
+                if(maxValue-i>nbPixels[j]){
+                    pgmHisto.getPixels()[i][j]=255;
                 }
                 else{
-                    pgmHisto.getPixels()[j][i]=0;
+                    pgmHisto.getPixels()[i][j]=0;
                 }
             }
         }
@@ -122,8 +122,8 @@ public class PGM {
         line = bf.readLine(); //On supprime "P2" et on passe à la suivante (on suppose que cette méthode n'est lancée que sur un fichier du bon type, ce sera vérifié ailleurs)
         line = bf.readLine(); //On supprime "#" et on passe à la suivante, avec les dimensions
         StringTokenizer sT = new StringTokenizer(line, " ");
-        int dim1= Integer.valueOf(sT.nextToken());
         int dim2= Integer.valueOf(sT.nextToken());
+        int dim1= Integer.valueOf(sT.nextToken());
         PGM pgm = new PGM(dim1, dim2);
         
         line = bf.readLine(); //On supprime "255" et on passe à la suivante, avec les pixels
@@ -166,7 +166,7 @@ public class PGM {
         //Lignes indiquant le type de fichier
         bw.write("P2\n#\n");
         //Entrer la taille de l'image
-        bw.write(pgm.getDimX() + " " + pgm.getDimY() + "\n");
+        bw.write(pgm.getDimY() + " " + pgm.getDimX() + "\n");
         //Le plus sombre :
         bw.write("255\n");
         //Entrer les lignes, en veillant à la contrainte de 70 caractères
