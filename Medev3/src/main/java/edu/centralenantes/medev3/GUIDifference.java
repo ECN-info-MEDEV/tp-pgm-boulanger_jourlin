@@ -25,6 +25,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  * @author Boulanger
  */
 public class GUIDifference extends JDialog {
+  
     private PGM imageOld;
     private PGM imageNew;
     private PGM imageOld2;
