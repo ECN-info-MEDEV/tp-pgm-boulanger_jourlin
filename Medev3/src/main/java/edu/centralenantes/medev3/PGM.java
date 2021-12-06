@@ -167,6 +167,7 @@ public class PGM {
         bw.write("P2\n#\n");
         //Entrer la taille de l'image
         bw.write(pgm.getDimY() + " " + pgm.getDimX() + "\n");
+        bw.write(pgm.getDimX() + " " + pgm.getDimY() + "\n");
         //Le plus sombre :
         bw.write("255\n");
         //Entrer les lignes, en veillant à la contrainte de 70 caractères
