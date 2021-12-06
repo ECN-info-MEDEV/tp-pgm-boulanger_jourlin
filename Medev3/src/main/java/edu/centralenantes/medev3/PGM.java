@@ -74,21 +74,21 @@ public class PGM {
      * @return
      */
     public static PGM histogramme(PGM pgmOrigine){
-        int[] nbPixels = new int[255];
+        int[] nbPixels = new int[256];
         for(int i=0; i<pgmOrigine.getDimX();i++){
             for (int j = 0; j < pgmOrigine.getDimY(); j++) {
                 nbPixels[pgmOrigine.getPixels()[i][j]]+=1;
             }
         }
         int maxValue = Arrays.stream(nbPixels).max().getAsInt();
-        PGM pgmHisto = new PGM(255,maxValue);
-        for (int i = 0; i < 255; i++) {
-            for(int j = 0 ; j<=maxValue ; j++){
-                if(maxValue-j<nbPixels[i]){
-                    pgmHisto.getPixels()[i][j]=255;
+        PGM pgmHisto = new PGM(maxValue,256);
+        for (int i = 0; i < 256; i++) {
+            for(int j = 0 ; j<maxValue ; j++){
+                if(j<=nbPixels[i]){
+                    pgmHisto.getPixels()[j][i]=255;
                 }
                 else{
-                    pgmHisto.getPixels()[i][j]=0;
+                    pgmHisto.getPixels()[j][i]=0;
                 }
             }
         }
