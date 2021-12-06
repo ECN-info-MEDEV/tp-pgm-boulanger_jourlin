@@ -36,8 +36,6 @@ public class PGM {
      */
 
     private int dimY;
-
-    
     public int[][] getPixels() {
         return pixels;
     }
@@ -155,6 +153,7 @@ public class PGM {
         return pgm;
     }
     
+
     /**
      * Méthode statique qui enregistre l'élément de la classe PGM placé en entrée dans un fichier nommé suivant le String en entrée
      * @param pgm
@@ -162,7 +161,7 @@ public class PGM {
      * @throws IOException
      */
     public static void enregistrement(PGM pgm, String nomFichier) throws IOException{
-        BufferedWriter bw = new BufferedWriter(new FileWriter(nomFichier));
+        BufferedWriter bw = new BufferedWriter(new FileWriter(nomFichier+".pgm"));
         //Lignes indiquant le type de fichier
         bw.write("P2\n#\n");
         //Entrer la taille de l'image

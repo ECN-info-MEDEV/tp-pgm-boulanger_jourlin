@@ -13,11 +13,12 @@ import java.io.IOException;
  */
 public class testsAS {
     public static void main(String[] args) throws IOException {
-        PGM pgm = PGM.lecture("C:\\Users\\asjou\\Documents\\Documents\\Info\\MEDEV\\Travail avec Netbeans-20211202\\Images Test PGM\\coins.pgm");
+        PGM pgm = PGM.lecture("C:\\Users\\Boulanger\\Downloads\\baboon.pgm");
         System.out.println(pgm.getDimX());
         System.out.println(pgm.getDimY());
         System.out.println(pgm.getPixels()[0][0]);
         System.out.println(pgm.getPixels()[1][0]);
-        PGM.enregistrement(pgm, "TestCoin.pgm");
+        pgm= PGM.histogramme(pgm);
+        PGM.enregistrement(pgm, "TesthistBABOON.pgm");
     }
 }
