@@ -25,6 +25,7 @@ public class GUIHistogramme extends JDialog {
     /**
      * Constructeur de GUISeuillage qui affiche le JDialog et initialise toutes les fonctionnalités
      * @param pgm 
+     * @throws java.lang.Exception 
      */
     public GUIHistogramme(GUIPgm pgm)throws Exception{
         super(pgm,"Histogramme d'une image",true);
